@@ -1,0 +1,6 @@
+*{margin: 0; padding: 0;}
+ul,ol{ list-style: none;}
+img{ display: block;}
+
+#login,#register{ width:500px; margin:30px auto; box-shadow: 0 5px 10px lightgreen;}
+p{ text-align: center; }

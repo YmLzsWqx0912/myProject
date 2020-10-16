@@ -4,8 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>注册页面</title>
+    <!-- 引入bootstrap的css和js文件 -->
+    <%- include('templates/file') %>
+    
 </head>
 <body>
-    hello register
+    <div id="register" class="border border-success rounded p-4">
+        <form id="registerForm" action="/users/register" method="POST">
+            <div class="form-group">
+                <label for="exampleInputEmail1">用户名</label>
+                <input id="username" name="username" type="text" class="form-control" placeholder="请输入用户名"autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">密码</label>
+                <input id="password" name="password" type="password" class="form-control" placeholder="请输入密码" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">确认密码</label>
+                <input id="confirm_pw" type="password" class="form-control" placeholder="请再次输入密码" autocomplete="off">
+             </div>
+            <button type="submit" class="btn btn-primary">注册</button>
+            <a href="/login" class="float-right mt-2">已有账号？</a>
+        </form>
+    </div>
+    
+    <div class="toast" data-delay="2000" style="position: absolute; top: 0; transform: translateX(-50%); left:50%;">
+        <div class="toast-header">
+        <strong class="mr-auto">提示信息</strong>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="toast-body">
+        
+        </div>
+    </div>
+
+    <script>
+        var $username = $('#username') ;
+        console.log($username);
+        var $password = $('#password') ;
+        var $confirm_pw = $('#confirm_pw') ;
+        $('#registerForm').submit(function(){
+            if(!$username.val() || !$password.val() ){
+                $('.toast-body').html("输入框不能为空") ;
+                $('.toast').toast('show') ;
+                return false ;
+            }else if($password.val() != $confirm_pw.val()){
+                $('.toast-body').html("两次密码输入不一致！") ;
+                $('.toast').toast('show') ;
+                return false ;
+            }
+        })
+
+
+
+    </script>
+
+
 </body>
 </html>
