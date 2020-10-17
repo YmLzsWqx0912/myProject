@@ -1,7 +1,5 @@
 var express = require('express');
 var router = express.Router();
-
-//2.引入控制层********************************MVC中的 controller层
 var controllerIndex = require('../controller/index') ;
 
 /* GET home page. */

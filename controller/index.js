@@ -1,4 +1,3 @@
-const { render } = require("../app")
 
 var login = (req, res, next) => {
     res.render('login');
