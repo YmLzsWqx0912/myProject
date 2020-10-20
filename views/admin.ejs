@@ -9,14 +9,14 @@
     
 </head>
 <body>
-    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-2 shadow">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">拉钩CMS管理后台</a>
-        <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap d-flex align-items-center">
-                <span class="text-white mr-3">欢迎：李伟</span>
-                <a class="nav-link" href="#">退出</a>
-            </li>
-        </ul>
-    </nav>
+    <%- include('templates/header') %>
+    <div class="container-fluid">
+        <div id="content" class="row">
+            <%- include('templates/menu' , { name : '' }) %>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <span class="welcome">欢迎您，访问拉钩网管理系统！！！！</span>
+            </main>
+        </div>
+    </div>
 </body>
 </html>

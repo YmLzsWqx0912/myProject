@@ -4,3 +4,29 @@ img{ display: block;}
 
 #login,#register{ width:500px; margin:30px auto; box-shadow: 0 10px 20px lightgreen;}
 p{ text-align: center; }
+
+#content { height:calc(100vh - 56px);}
+#menu { background: #eee;  }
+#content .welcome{ position: absolute; top:200px; left:50%; font-size: 30px; transform: translateX(-50%);}
+#content nav{ margin-bottom: -9999px; padding-bottom: 9999px; overflow: hidden;  }
+#content main{ margin-bottom: -9999px; padding-bottom: 9999px; position: relative; overflow: hidden; }
+.breadcrumb{ background:transparent;}
+#menu .active{ text-decoration:underline; font-size:20px;}
+.companyLogo{
+    width: 300px;
+    height: 300px;
+    border: 1px solid lightsalmon;
+    border-radius: 4px;
+}
+.companyLogo img{
+    display: block;
+    padding: 5%;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+
+

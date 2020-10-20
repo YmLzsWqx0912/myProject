@@ -1,0 +1,12 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/admin">首页</a></li>
+      <% name.forEach((v,i)=>{ %>
+        <% if(v.link){ %>
+          <li class="breadcrumb-item"><a href="<%= v.link %>"><%= v.value %></a></li>
+        <% }else{ %>
+          <li class="breadcrumb-item"><%= v.value %></li>
+        <% }%>
+      <% }) %>
+    </ol>
+</nav>

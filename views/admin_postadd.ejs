@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>职位添加</title>
+    <%- include('templates/file') %>
+</head>
+<body>
+    <%- include('templates/header') %>
+    <div class="container-fluid">
+        <div id="content" class="row">
+            <%- include('templates/menu',{ name : '职位添加' }) %>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <%- include('templates/breadcrumb',{ name : [{ link : '' , value : '职位添加' }] }) %>
+                <div class="col-6 mb-5">
+                    <form action="/post/add" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                          <label>职位名称</label>
+                          <input type="text" class="form-control" name="postName">
+                        </div>
+                        <div class="form-group">
+                            <label>职位地点</label>
+                            <input type="text" class="form-control" name="postCity">
+                        </div>
+                        <div class="form-group">
+                          <label>薪资范围</label>
+                          <select class="form-control" name="postMoney">
+                            <option value="不限">不限</option>
+                            <option value="5K以下">5K以下</option>
+                            <option value="5K-10K">5K-10K</option>
+                            <option value="10K-15K">10K-15K</option>
+                            <option value="15K-25K">15K-25K</option>
+                            <option value="25K以上">25K以上</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label>工作年限</label>
+                          <select class="form-control" name="postYear">
+                            <option value="不限">不限</option>
+                            <option value="1年以下">1年以下</option>
+                            <option value="1-3年">1-3年</option>
+                            <option value="3-5年">3-5年</option>
+                            <option value="5年以上">5年以上</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label>最高学历</label>
+                          <select class="form-control" name="postEdu">
+                            <option value="不限">不限</option>
+                            <option value="专科以上">专科以上</option>
+                            <option value="本科以上">本科以上</option>
+                            <option value="研究生以上">研究生以上</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                            <label>公司名称</label>
+                            <input type="text" class="form-control" name="companyName">
+                        </div>
+                        <div class="form-group">
+                            <label class="btn btn-primary">公司Logo<input type="file" class="d-none" name="companyLogo" id="companyLogo"></label>
+                            <div class="companyLogo">
+                              <img id="companyImg" src="" alt="">
+                            </div>
+                            
+                        </div>
+                        <div class="form-group">
+                          <label>职位信息</label>
+                          <textarea class="form-control" rows="7" name="postMessage"></textarea>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-primary" value="添加">
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script>
+
+    $('#companyLogo').change(function(){
+        var fileReader = new FileReader();
+        fileReader.onload = function(e){   //读取成功触发的事件
+            $('#companyImg').attr('src', e.target.result );
+        };
+        var imageFile = this.files[0];  //找到上传的文件
+        fileReader.readAsDataURL(imageFile);  //读取这个文件的信息
+    });
+
+    </script>
+</body>
+</html>

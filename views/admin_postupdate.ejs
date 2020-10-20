@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>职位更新</title>
+    <%- include('templates/file') %>
+</head>
+<body>
+    <%- include('templates/header') %>
+    <div class="container-fluid">
+        <div id="content" class="row">
+            <%- include('templates/menu',{ name : '职位管理' }) %>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <%- include('templates/breadcrumb',{ name : [{ link : '/admin/postedit' , value : '职位管理' },{ link : '' , value : '职位更新' }] }) %>
+                <div class="col-6 mb-5">
+                    <form action="/post/update" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                          <label>职位名称</label>
+                          <input type="text" value="<%= info.postName %>" class="form-control" name="postName">
+                        </div>
+                        <div class="form-group">
+                            <label>职位地点</label>
+                            <input type="text" value="<%= info.postCity %>" class="form-control" name="postCity">
+                        </div>
+                        <div class="form-group">
+                          <label>薪资范围</label>
+                          <select class="form-control" name="postMoney" value="<%= info.postMoney %>">
+                            <option <%= info.postMoney == '不限' ? 'selected' : '' %> value="不限">不限</option>
+                            <option <%= info.postMoney == '5K以下' ? 'selected' : '' %> value="5K以下">5K以下</option>
+                            <option <%= info.postMoney == '5K-10K' ? 'selected' : '' %> value="5K-10K">5K-10K</option>
+                            <option <%= info.postMoney == '10K-15K' ? 'selected' : '' %> value="10K-15K">10K-15K</option>
+                            <option <%= info.postMoney == '15K-25K' ? 'selected' : '' %> value="15K-25K">15K-25K</option>
+                            <option <%= info.postMoney == '25K以上' ? 'selected' : '' %> value="25K以上">25K以上</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label>工作年限</label>
+                          <select class="form-control" name="postYear">
+                            <option <%= info.postYear == '不限' ? 'selected' : '' %> value="不限">不限</option>
+                            <option <%= info.postYear == '1年以下' ? 'selected' : '' %> value="1年以下">1年以下</option>
+                            <option <%= info.postYear == '1-3年' ? 'selected' : '' %> value="1-3年">1-3年</option>
+                            <option <%= info.postYear == '3-5年' ? 'selected' : '' %> value="3-5年">3-5年</option>
+                            <option <%= info.postYear == '5年以上' ? 'selected' : '' %> value="5年以上">5年以上</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label>最高学历</label>
+                          <select class="form-control" name="postEdu">
+                            <option <%= info.postEdu == '不限' ? 'selected' : '' %> value="不限">不限</option>
+                            <option <%= info.postEdu == '专科以上' ? 'selected' : '' %> value="专科以上">专科以上</option>
+                            <option <%= info.postEdu == '本科以上' ? 'selected' : '' %> value="本科以上">本科以上</option>
+                            <option <%= info.postEdu == '研究生以上' ? 'selected' : '' %> value="研究生以上">研究生以上</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                            <label>公司名称</label>
+                            <input type="text" value="<%= info.companyName %>" class="form-control" name="companyName">
+                        </div>
+                        <div class="form-group">
+                            <label class="btn btn-primary">公司Logo<input type="file" class="d-none" name="companyLogo" id="companyLogo"></label>
+                            <div class="companyLogo">
+                              <img src="<%= info.companyLogo %>" alt="" id="companyImg">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                          <label>职位信息</label>
+                          <textarea class="form-control" rows="7" name="postMessage"><%= info.postMessage %></textarea>
+                        </div>
+                        <div>
+                            <input type="hidden" name="postId" value="<%= info.postId %>">
+                            <input type="hidden" name="prevLogo" value="<%= info.companyLogo %>">
+                            <input type="submit" class="btn btn-primary" value="更新">
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script>
+
+    $('#companyLogo').change(function(){
+        var fileReader = new FileReader();
+        fileReader.onload = function(e){   //读取成功触发的事件
+            $('#companyImg').attr('src', e.target.result );
+        };
+        var imageFile = this.files[0];  //找到上传的文件
+        fileReader.readAsDataURL(imageFile);  //读取这个文件的信息
+    });
+
+    </script>
+</body>
+</html>
