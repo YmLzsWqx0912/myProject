@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var postSchema = mongoose.Schema({
+    //required:true 必选项，一定要有这个值
     postName : { type : String , required : true },
     postCity : { type : String , required : true },
     postMoney : { type : String , required : true },

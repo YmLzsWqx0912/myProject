@@ -33,11 +33,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-//只会拦截admin标识的get请求
+//只会拦截admin标识的get请求，没登录之前时不能访问admin的
 app.get(/\/admin/,(req,res,next)=>{
-  // if( !req.session.username ){
-  //   res.redirect('/login');
-  // }
+  if( !req.session.username ){
+    res.redirect('/login');
+  }
   next();
 });
 

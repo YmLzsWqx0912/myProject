@@ -40,9 +40,8 @@ var update = (req,res,next)=>{
         // 修改了 logo 文件
         //删除旧的logo
         body.prevLogo = body.prevLogo.replace(/http:\/\/localhost:3000/,'./public'); 
-        //删除文件：同步的方法
-        fs.unlinkSync(body.prevLogo);
-        delete body.prevLogo;
+        fs.unlinkSync(body.prevLogo);  //删除文件：同步的方法
+        delete body.prevLogo;         //删除body里面的属性
 
         //重命名
         fs.renameSync( path.join('./public/uploads' , file.filename) , path.join('./public/uploads' , file.filename + '.png') );
@@ -72,9 +71,25 @@ var update = (req,res,next)=>{
 
 };
 
+var remove = (req, res, next) => {
+    var query = req.query ;
+    PostModel.deleteOne(query).then((info) => {
+        res.send({
+            code : 0 ,
+            errmsg : 'ok'
+        });
+    }).catch((err) => {
+        res.send({
+            code : -1 ,
+            errmsg : 'not remove'
+        });
+    })
+}
+
 
 
 module.exports = {
     add,
-    update
+    update,
+    remove
 };

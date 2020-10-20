@@ -15,15 +15,25 @@ var admin = (req,res,next)=>{
 
 var admin_postedit = (req,res,next)=>{
 
-    PostModel.find().then((infos)=>{
+    var page = req.params.page ;
+    var count = 5 ;
+
+    Promise.all([
+        PostModel.find().skip((page-1)*count).limit(count),
+        PostModel.find().count()
+    ]).then((infos)=>{
         res.render('admin_postedit',{
             username : req.session.username,
-            infos 
+            infos : infos[0],
+            pages : Math.ceil(infos[1]/count),
+            now : Number(page)
         });
     }).catch((err)=>{
         res.render('admin_postedit',{
             username : req.session.username,
-            infos : [] 
+            infos : [] ,
+            pages : 0,
+            now : 0
         });
     });
 

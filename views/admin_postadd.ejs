@@ -80,11 +80,12 @@
 
     $('#companyLogo').change(function(){
         var fileReader = new FileReader();
-        fileReader.onload = function(e){   //读取成功触发的事件
+        fileReader.onload = function(e){   
+          //读取成功触发的事件，给img设置src属性
             $('#companyImg').attr('src', e.target.result );
         };
         var imageFile = this.files[0];  //找到上传的文件
-        fileReader.readAsDataURL(imageFile);  //读取这个文件的信息
+        fileReader.readAsDataURL(imageFile);  //读取这个文件的信息，预览图片
     });
 
     </script>
